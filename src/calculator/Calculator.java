@@ -49,7 +49,7 @@ class Calculator {
                 case "/+":
                     result = b / c + a;
                     break;
-                case "*-":
+                case "*-": 
                     result = b * c - a;
                     break;
                 case "/-":
