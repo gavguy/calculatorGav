@@ -11,55 +11,73 @@ import java.sql.SQLOutput;
 class Calculator {
 
     String calculate(String[] expression) {
+
         System.out.println(expression[0]);
         System.out.println(expression[1]);
         System.out.println(expression[2]);
-
+        System.out.println(expression[3]);
+        System.out.println(expression[4]);
         double a = Double.parseDouble(expression[0]);
         double b = Double.parseDouble(expression[2]);
+        double c = Double.parseDouble(expression[4]);
 
         double result;
 
-        switch (expression[1]) {
-            case "+":
-                result = a + b;
-                break;
-            case "-":
-                result = a - b;
-                break;
-            case "*":
-                result = a * b;
-                break;
-            case "/":
-                result = a / b;
-                break;
-            default:
-                return "error";
+
+        if (expression.length < 4) {/// если меньше 4 символов вели, то 2 числа считаем, если нет ...
+            switch (expression[1]) {
+                case "+":
+                    result = a + b;
+                    break;
+                case "-":                    /// с одним знаком число выведено
+                    result = a - b;
+                    break;
+                case "*":
+                    result = a * b;
+                    break;
+                case "/":
+                    result = a / b;
+                    break;
+            }
         }
-        if (expression.length < 4) {
+        if (expression[3] = "*" || "/") {  ///если 4-ый символ * или /, то переключаю и считаю.....
+///// как перевести что-то с клавиатуры в символ и чтобы можно былобы сравненить это?
+            switch (expression[3]) {
+                case "*+":
+                    result = b * c + a;
+                    break;
+                case "/+":
+                    result = b / c + a;
+                    break;
+                case "*-":
+                    result = b * c - a;
+                    break;
+                case "/-":
+                    result = b / c - a;
+                    break;
+            }
+        } else {
+            ///... или считаю по порядку , первое переключение
+
+            switch (expression[1]) {
+                case "*+":
+                    result = a * b + c;
+                    break;
+                case "/+":
+                    result = a / b + c;
+                    break;
+                case "*-":
+                    result = a * b - c;
+                    break;
+                case "/-":
+                    result = a / b + c;
+                    break; }
+
+
+            }
+
             return String.valueOf(result);
         }
-        System.out.println(expression[3]);
-        System.out.println(expression[4]);
-        double c = Double.parseDouble(expression[4]);
-        switch (expression[3]) {
-            case "+":
-                result = result + c;
-                break;
-            case "-":
-                result = result - c;
-                break;
-            case "*":
-                result = result * c;
-                break;
-            case "/":
-                result = result / c;
-                break;
-            default:
-                return "error";
-        }
 
-        return String.valueOf(result);
     }
-
 }
